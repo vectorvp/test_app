@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1><small> Добро пожаловать, {{session.name}}</small></h1>
+	<a class="btn btn-success" href="/add_car">Добавить автомобиль</a>
+	<hr>
+	<table class="table table-striped">
+	    <tr>
+		   <th>Номер</th>
+		   <th>Название(рус)</th>
+		   <th>Название(англ)</th>
+		   <th>Год выпуска авто</th>
+		   <th>Добавлено в базу</th>
+		   <th></th>
+		   <th></th>
+	    </tr>
+		{% for car in cars %}
+		  <tr>
+		    <td>{{car.id}}</td>
+		    <td>{{car.model_ru}}</td>
+		    <td>{{car.model_eng}}</td>
+		    <td>{{car.c_year}}</td>
+		    <td>{{car.create_date}}</td>
+		    <td><a href="edit_car/{{car.id}}" class="btn btn-primary">Редактировать</a></td>
+		    <td>
+			    <form action="{{url_for('delete_car', id=car.id)}}" method="POST">
+				  <input type="hidden" name="_method" value="Удалить">
+				  <input type="submit" value="Удалить" class="btn btn-danger">
+				</form>
+			</td>
+		  </tr>
+		{% endfor %}
+	</table>
+{% endblock %}

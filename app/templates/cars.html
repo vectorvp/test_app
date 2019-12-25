@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Автомобили</h1>
+	<ul class="list-group">
+	{% for car in cars %}
+	    <li class="list-group-item"><a href="car/{{car.id}}">{{car.model_ru}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock %}
